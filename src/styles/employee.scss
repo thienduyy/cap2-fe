@@ -1,0 +1,117 @@
+// .table-list {
+//   margin: 2rem 2rem;
+//   .ant-card {
+//     border-radius: 8px;
+//     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+//       0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+//     margin-bottom: 2.5rem;
+//   }
+//   .table-header {
+//     margin-bottom: 0.3rem;
+//     border-bottom: 1px solid hsla(0, 0%, 58%, 0.2);
+//   }
+// }
+.card-list {
+  .filter {
+    width: 100%;
+  }
+  .card-option .ant-card-body {
+    display: flex;
+
+    justify-content: space-between;
+    .option-status {
+      display: flex;
+      margin-right: 1rem;
+      // justify-content: space-between;
+      p {
+        font-size: 16px;
+        margin: 3px 10px 0;
+      }
+    }
+  }
+  margin: 2rem 2rem;
+  // display: flex;
+  // flex-wrap: wrap;
+  justify-content: space-between;
+  .ant-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    margin-bottom: 2.5rem;
+  }
+  .card-header {
+    //position: relative;
+    margin-bottom: 0.3rem;
+    border-bottom: 1px solid hsla(0, 0%, 58%, 0.2);
+    //height: 50px;
+    .card-icon {
+      //position: absolute;
+
+      color: white;
+      height: 80px;
+      width: 80px;
+      text-align: center;
+      margin-top: -40px;
+      margin-bottom: 0.8rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+        0 7px 10px -5px rgba(0, 0, 0, 0.14);
+      svg {
+        margin: 1.3rem 0;
+        font-size: 36px;
+      }
+    }
+    .table-title {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      margin-top: -40px;
+
+      margin-bottom: 0.8rem;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+        0 7px 10px -5px rgba(0, 0, 0, 0.14);
+      text-align: start;
+      h2 {
+        font-size: 20px;
+        font-weight: 300;
+        color: white;
+      }
+      h4 {
+        font-size: 15px;
+        font-weight: 300;
+        color: hsla(0, 0%, 100%, 0.8);
+      }
+    }
+    p {
+      margin-top: -60px;
+      margin-right: -10px;
+      float: right;
+      font-size: 18px;
+      font-weight: 300;
+    }
+    h3 {
+      position: absolute;
+      left: 92%;
+      margin-top: -35px;
+      margin-left: -20px;
+      font-size: 25px;
+      font-weight: 300;
+    }
+  }
+
+  .card-table {
+    text-align: center;
+    tr th {
+      color: #ffa726;
+      text-align: center;
+    }
+    .ant-table-cell {
+      font-weight: 300;
+    }
+    .ant-table-tbody {
+      text-align: center;
+    }
+  }
+}

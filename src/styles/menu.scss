@@ -29,6 +29,7 @@
   //text-align: ce;
   padding-left: 0.8rem;
   font-size: 1rem;
+  // a {
   &:hover {
     background-color: hsla(0, 0%, 78%, 0.2);
   }
@@ -36,6 +37,7 @@
   .anticon {
     margin-right: 1.5rem;
   }
+  // }
 }
 .ant-menu-item {
   .anticon {
@@ -44,9 +46,12 @@
 }
 
 .ant-menu-item-active {
-  color: #f0f0f0;
-  &:hover {
-    color: rgba(0, 0, 0, 0.85);
+  a {
+    color: #f0f0f0;
+    &:hover {
+      color: rgba(0, 0, 0, 0.85);
+      text-decoration: none;
+    }
   }
 }
 
@@ -59,6 +64,13 @@
   background-color: rgba(0, 0, 0, 0.85);
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
     0 7px 10px -5px rgba(0, 0, 0, 0.85);
+}
+.ant-menu-item-selected a {
+  color: #f0f0f0;
+  &:hover {
+    color: #f0f0f0;
+    text-decoration: none;
+  }
 }
 
 .header-btn {

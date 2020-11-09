@@ -12,6 +12,7 @@ import {
 
 import "../../styles/menu.scss";
 import Text from "antd/lib/typography/Text";
+import { Link } from "react-router-dom";
 
 const MenuComponent = () => {
   return (
@@ -29,44 +30,58 @@ const MenuComponent = () => {
         >
           <Menu.Item key="1">
             <div className="menu-item">
-              <AppstoreOutlined />
-              Dashboard
+              <Link to="/">
+                <AppstoreOutlined />
+                Dashboard
+              </Link>
             </div>
           </Menu.Item>
           <Menu.Item key="2">
             <div className="menu-item">
-              <UserOutlined />
-              Employee Manager
+              <Link to="/employee">
+                <UserOutlined />
+                Employee Manager
+              </Link>
             </div>
           </Menu.Item>
           <Menu.Item key="3">
             <div className="menu-item">
-              <PieChartOutlined />
-              Chart
+              <Link to="/">
+                <PieChartOutlined />
+                Chart
+              </Link>
             </div>
           </Menu.Item>
           <Menu.Item key="4">
             <div className="menu-item">
-              <BellOutlined />
-              Notifications
+              <Link to="/">
+                <BellOutlined />
+                Notifications
+              </Link>
             </div>
           </Menu.Item>
           <Menu.Item key="5">
             <div className="menu-item">
-              <HistoryOutlined />
-              History In/Out
+              <Link to="/">
+                <HistoryOutlined />
+                History In/Out
+              </Link>
             </div>
           </Menu.Item>
           <Menu.Item key="6">
             <div className="menu-item">
-              <PrinterOutlined />
-              Export CSV
+              <Link to="/">
+                <PrinterOutlined />
+                Export CSV
+              </Link>
             </div>
           </Menu.Item>
           <Menu.Item key="7">
             <div className="menu-item">
-              <SettingOutlined />
-              Setting
+              <Link to="/">
+                <SettingOutlined />
+                Setting
+              </Link>
             </div>
           </Menu.Item>
         </Menu>
