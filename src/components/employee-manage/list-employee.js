@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import FilterEmployee from "./filter-employee";
 import View from "./action/view";
 import Edit from "./action/edit";
-import Remove from "./action/remove";
+// import Remove from "./action/remove";
 // import { fetchEmployee } from "../../constants/api";
 import Axios from "axios";
 import {
@@ -20,7 +20,7 @@ import {
   noMaskFilter,
   noMaskLoad,
 } from "../../constants/action";
-import { deleteEmployee, updateEmployee } from "../../constants/url";
+import { updateEmployee } from "../../constants/url";
 
 // const { Option } = Select;
 const { Column } = Table;

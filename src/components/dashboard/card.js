@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeadSideMask,
+  faHeadSideCough,
+  faPercentage,
+  faMapMarkerAlt,
+  faFlag,
+} from "@fortawesome/free-solid-svg-icons";
 // import { totalNoMask, totalEmployee } from "../../constants/url";
 
 const current = new Date();
@@ -71,7 +79,7 @@ const CardList = () => {
         <Card style={{ width: 300, height: 115 }}>
           <div className="card-header">
             <div className="card-icon" style={{ backgroundColor: "#00b894" }}>
-              <PeopleAltOutlinedIcon />
+              <FontAwesomeIcon icon={faHeadSideCough} />
             </div>
             <p>Total No Mask</p>
             <h3>{totalNoMask}</h3>
@@ -83,7 +91,7 @@ const CardList = () => {
         <Card style={{ width: 300, height: 115 }}>
           <div className="card-header">
             <div className="card-icon" style={{ backgroundColor: "#ff7675" }}>
-              <PeopleAltOutlinedIcon />
+              <FontAwesomeIcon icon={faHeadSideMask} />
             </div>
             <p>Total Mask</p>
             <h3>{totalMask}</h3>
@@ -95,7 +103,7 @@ const CardList = () => {
         <Card style={{ width: 300, height: 115 }}>
           <div className="card-header">
             <div className="card-icon" style={{ backgroundColor: "#74b9ff" }}>
-              <PeopleAltOutlinedIcon />
+              <FontAwesomeIcon icon={faPercentage} />
             </div>
             <p>Rate Of No Mask</p>
             <h3>{fetchRageNoMask(totalNoMask, totalEmp)}</h3>
@@ -107,7 +115,7 @@ const CardList = () => {
         <Card style={{ width: 300, height: 115 }}>
           <div className="card-header">
             <div className="card-icon" style={{ backgroundColor: "#6c5ce7" }}>
-              <PeopleAltOutlinedIcon />
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
             </div>
             <p>Total Work Place</p>
             <h3>{totalPlace}</h3>
@@ -119,7 +127,7 @@ const CardList = () => {
         <Card style={{ width: 300, height: 115 }}>
           <div className="card-header">
             <div className="card-icon" style={{ backgroundColor: "#636e72" }}>
-              <PeopleAltOutlinedIcon />
+              <FontAwesomeIcon icon={faFlag} />
             </div>
             <p>Total Announcement</p>
             <h3>43</h3>

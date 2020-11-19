@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Table } from "antd";
+import { Bar } from "react-chartjs-2";
 import axios from "axios";
 // const currentDay = new Date().toLocaleDateString();
 const current = new Date();
@@ -24,32 +25,12 @@ const columns = [
     dataIndex: "area",
   },
 ];
-const data = [
-  {
-    key: "1",
-    id: 1,
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    id: 2,
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    id: 3,
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-];
 const TableComponent = () => {
   const [totalNoMask, setTotalNoMask] = useState();
-  console.log(totalNoMask);
+  const [totalEmp, setTotalEmp] = useState([]);
+  const [totalEmpNoMask, setTotalEmpNoMask] = useState([]);
+  const totalMask = totalEmp - totalEmpNoMask;
+  // console.log(totalEmpNoMask);
   // console.log(data);
   const key = () => {
     return (
@@ -57,6 +38,12 @@ const TableComponent = () => {
     );
   };
   useEffect(() => {
+    const fetchTotalEmp = async () => {
+      const result = await axios("http://localhost:3200/api/totalEmployee");
+      const { total } = result.data[0];
+      setTotalEmp(total);
+      // console.log(total);
+    };
     const fetchTotalNoMask = async () => {
       const data = await axios("http://localhost:3200/api/listNoMask", {
         params: { currentDay },
@@ -65,7 +52,17 @@ const TableComponent = () => {
       setTotalNoMask(data.data);
       // console.log(total);
     };
+    const fetchTotalEmpNoMask = async () => {
+      const result = await axios("http://localhost:3200/api/totalNoMask", {
+        params: { currentDay },
+      });
+      const { total } = result.data[0];
+      setTotalEmpNoMask(total);
+      // console.log(total);
+    };
     fetchTotalNoMask();
+    fetchTotalEmp();
+    fetchTotalEmpNoMask();
   }, []);
   return (
     <>
@@ -90,16 +87,54 @@ const TableComponent = () => {
         <Card style={{ width: "49%", height: "100%" }}>
           <div className="card-header">
             <div className="table-title" style={{ backgroundColor: "#ff7675" }}>
-              <h2 className="table-h2">Employee Stats</h2>
-              <h4 className="table-h4">New employees on {currentDay}</h4>
+              <h2 className="table-h2">Employee Char</h2>
+              <h4 className="table-h4">
+                Employees mask and no mask on {currentDay}
+              </h4>
             </div>
           </div>
           <div className="card-footer">
-            <Table
-              columns={columns}
-              dataSource={data}
-              size="middle"
-              className="card-table table2"
+            <Bar
+              data={{
+                labels: ["No Mask", "Mask"],
+                datasets: [
+                  {
+                    label: "Employee (person)",
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 0.2)",
+                      "rgba(54, 162, 235, 0.2)",
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                    ],
+                    data: [totalEmpNoMask, totalMask],
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              options={{
+                // legend: { display: false },
+                // title: {
+                //   display: true,
+                //   text: "Predicted world population (millions) in 2050",
+                // },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        beginAtZero: true,
+                        userCallback: function (label, index, labels) {
+                          // when the floored value is the same as the value we have a whole number
+                          if (Math.floor(label) === label) {
+                            return label;
+                          }
+                        },
+                      },
+                    },
+                  ],
+                },
+              }}
             />
           </div>
         </Card>

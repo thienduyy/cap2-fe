@@ -46,7 +46,7 @@ const MenuComponent = () => {
           </Menu.Item>
           <Menu.Item key="3">
             <div className="menu-item">
-              <Link to="/">
+              <Link to="/chart">
                 <PieChartOutlined />
                 Chart
               </Link>
