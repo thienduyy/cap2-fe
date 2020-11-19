@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Modal, Form, Input, DatePicker } from "antd";
+import { Modal, Form, Input } from "antd";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
