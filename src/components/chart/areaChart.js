@@ -50,6 +50,7 @@ const AreaChart = () => {
                     "rgba(255, 159, 64, 1)",
                   ],
                   borderWidth: 1,
+                  hoverOffset: 4,
                   data: area.map((data) => data.total),
                 },
               ],

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Tabs } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,10 +10,23 @@ import "../../styles/chart.scss";
 import AreaChart from "./areaChart";
 import MaskChart from "./maskChart";
 import LineChart from "./lineChart";
-
+import axios from "axios";
 const { TabPane } = Tabs;
 
 const Chart = () => {
+  const [totalEmp, setTotalEmp] = useState();
+  useEffect(() => {
+    // const totall = 0;
+    const fetchTotalEmp = async () => {
+      const result = await axios("http://localhost:3200/api/totalEmployee");
+      const { total } = result.data[0];
+      setTotalEmp(total);
+      // totall = total;
+      // console.log(total);
+    };
+
+    fetchTotalEmp();
+  }, []);
   return (
     <div>
       <h2>Chart</h2>
@@ -50,7 +63,7 @@ const Chart = () => {
             }
             key="3"
           >
-            <LineChart />
+            <LineChart total={totalEmp} />
           </TabPane>
         </Tabs>
       </Card>

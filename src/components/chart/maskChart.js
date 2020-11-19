@@ -8,7 +8,7 @@ const MaskChart = () => {
   const [noMask, setNoMask] = useState([]);
   const [mask, setMask] = useState([]);
   const [totalEmp, setTotalEmp] = useState();
-  console.log(noMask);
+  // console.log(noMask);
   // noMask.forEach((item, index, array) => {
   //   setMask(item);
   // });
@@ -38,7 +38,7 @@ const MaskChart = () => {
     const mask = [];
     const startDate = dateString[0];
     const endDate = dateString[1];
-    // console.log(startDate, endDate);
+    console.log(startDate, endDate);
     const { data } = await axios("http://localhost:3200/api/noMaskByDate", {
       params: { startDate, endDate },
     });
@@ -49,7 +49,7 @@ const MaskChart = () => {
       mask.push(maskEmp);
     });
     setMask(mask);
-    console.log(mask);
+    // console.log(mask);
   };
 
   return (
@@ -99,6 +99,18 @@ const MaskChart = () => {
                             return label;
                           }
                         },
+                      },
+                      scaleLabel: {
+                        display: true,
+                        labelString: "Person",
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      scaleLabel: {
+                        display: true,
+                        labelString: "Date (dd/mm)",
                       },
                     },
                   ],

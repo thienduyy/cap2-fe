@@ -1,8 +1,33 @@
 import { Card } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import axios from "axios";
 
-const LineChart = () => {
+const LineChart = ({ total }) => {
+  const [noMask, setNoMask] = useState();
+  const [mask, setMask] = useState([]);
+
+  useEffect(() => {
+    const fetchNoMaskByMonth = async () => {
+      const noMask = [];
+      const mask = [];
+      const { data } = await axios("http://localhost:3200/api/noMaskByMonth");
+      // setNoMask(data);
+      data.forEach((element) => {
+        //react-hooks/exhaustive-deps
+        const maskEmp = total - element.totalNoMask; //react-hooks/exhaustive-deps
+        // console.log(totalEmp);
+        noMask.push(element.totalNoMask);
+        mask.push(maskEmp);
+      });
+      setNoMask(noMask);
+      setMask(mask);
+      // console.log(mask);
+    };
+
+    // fetchTotalEmp();
+    fetchNoMaskByMonth();
+  }, []);
   return (
     <div className="card-list">
       <Card style={{ width: "100%", height: "100%" }}>
@@ -18,58 +43,65 @@ const LineChart = () => {
           <Line
             data={{
               labels: [
-                1500,
-                1600,
-                1700,
-                1750,
-                1800,
-                1850,
-                1900,
-                1950,
-                1999,
-                2050,
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
               ],
               datasets: [
                 {
-                  data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                  label: "Africa",
+                  data: noMask,
+                  label: "No Mask",
                   borderColor: "#3e95cd",
                   fill: false,
                 },
                 {
-                  data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-                  label: "Asia",
+                  data: mask,
+                  label: "Mask",
                   borderColor: "#8e5ea2",
-                  fill: false,
-                },
-                {
-                  data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-                  label: "Europe",
-                  borderColor: "#3cba9f",
-                  fill: false,
-                },
-                {
-                  data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784],
-                  label: "Latin America",
-                  borderColor: "#e8c3b9",
-                  fill: false,
-                },
-                {
-                  data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
-                  label: "North America",
-                  borderColor: "#c45850",
                   fill: false,
                 },
               ],
             }}
             options={{
-              title: {
-                display: true,
-                text: "World population per region (in millions)",
-              },
               legend: {
                 display: true,
                 position: "bottom",
+              },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: true,
+                      userCallback: function (label, index, labels) {
+                        // when the floored value is the same as the value we have a whole number
+                        if (Math.floor(label) === label) {
+                          return label;
+                        }
+                      },
+                    },
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Person",
+                    },
+                  },
+                ],
+                xAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Month",
+                    },
+                  },
+                ],
               },
             }}
           />
