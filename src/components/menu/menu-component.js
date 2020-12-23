@@ -30,7 +30,7 @@ const MenuComponent = () => {
         >
           <Menu.Item key="1">
             <div className="menu-item">
-              <Link to="/">
+              <Link to="/dashboard">
                 <AppstoreOutlined />
                 Dashboard
               </Link>

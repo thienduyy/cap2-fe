@@ -21,13 +21,13 @@ import {
   noMaskLoad,
 } from "../../constants/action";
 import { updateEmployee } from "../../constants/url";
+import ReactToExcel from "react-html-table-to-excel";
 
 // const { Option } = Select;
 const { Column } = Table;
 const current = new Date();
-const currentDay = `${current.getFullYear()}-${
-  current.getMonth() + 1
-}-${current.getDate()}`;
+const currentDay = `${current.getFullYear()}-${current.getMonth() + 1
+  }-${current.getDate()}`;
 
 const ListEmployee = () => {
   const empList = useSelector((state) => state.employee);
@@ -159,14 +159,15 @@ const ListEmployee = () => {
             size="middle"
             className="card-table"
             rowKey={key}
-            // onRow={(record, key) => {
-            //   return {
-            //     onClick: (event) => {
-            //       event.stopPropagation();
-            //       setData(record);
-            //     },
-            //   };
-            // }}
+            id="table-to-xls"
+          // onRow={(record, key) => {
+          //   return {
+          //     onClick: (event) => {
+          //       event.stopPropagation();
+          //       setData(record);
+          //     },
+          //   };
+          // }}
           >
             {/* <Column title="ID" dataIndex="id" key="id" />
             <Column title="Name" dataIndex="name" key="name" />
@@ -218,6 +219,14 @@ const ListEmployee = () => {
               )}
             />
           </Table>
+
+          <ReactToExcel
+            className="btn-excel"
+            table="table-to-xls"
+            filename="excelFile"
+            sheet="sheet 1"
+            buttonText="Export Excel"
+          />
         </div>
       </Card>
       <View view={view} closeModalView={closeModalView} data={data} />

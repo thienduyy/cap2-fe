@@ -38,7 +38,7 @@ const MaskChart = () => {
     const mask = [];
     const startDate = dateString[0];
     const endDate = dateString[1];
-    console.log(startDate, endDate);
+    //console.log(startDate, endDate);
     const { data } = await axios("http://localhost:3200/api/noMaskByDate", {
       params: { startDate, endDate },
     });
